@@ -10,7 +10,7 @@ public class Line {
 
     public Line(int countOfPerson, ValueGenerator valueGenerator) {
         positions.add(Position.first(valueGenerator));
-        while (countOfPerson-- > 0) {
+        while (countOfPerson-- > 2) {
             positions.add(getLastPosition().next(valueGenerator));
         }
         positions.add(getLastPosition().last());
