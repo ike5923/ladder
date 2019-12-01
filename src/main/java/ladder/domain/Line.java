@@ -8,9 +8,9 @@ public class Line {
 
     private final List<Position> positions = new ArrayList<>();
 
-    public Line(int countOfPerson, ValueGenerator valueGenerator) {
+    public Line(int countOfUsers, ValueGenerator valueGenerator) {
         positions.add(Position.first(valueGenerator));
-        while (countOfPerson-- > 2) {
+        while (countOfUsers-- > 2) {
             positions.add(getLastPosition().next(valueGenerator));
         }
         positions.add(getLastPosition().last());
