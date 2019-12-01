@@ -19,7 +19,7 @@ class LineTest {
     }
 
     @Test
-    @DisplayName("고정 값으로 사다리 생성")
+    @DisplayName("고정 값으로 사다리 라인 생성")
     void createLine() {
         Position first = positions.get(0);
         Position leftMiddle = positions.get(1);
