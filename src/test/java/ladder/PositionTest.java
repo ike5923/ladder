@@ -10,15 +10,15 @@ class PositionTest {
     @Test
     @DisplayName("왼쪽 끝 점 생성")
     void createLeftEndPosition() {
-        Position leftEndPosition = Position.of(false, true);
+        Position leftEndPosition = Position.first(() -> true);
         assertThat(leftEndPosition.isLeft()).isFalse();
     }
 
     @Test
     @DisplayName("오른쪽 끝 점 생성")
     void createRightEndPosition() {
-        Position leftEndPosition = Position.of(false, false);
-        assertThat(leftEndPosition.isCurrent()).isFalse();
+        Position rightEndBeforePosition = Position.of(false, true);
+        assertThat(rightEndBeforePosition.last().isCurrent()).isFalse();
     }
 
     @Test

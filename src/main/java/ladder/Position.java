@@ -19,12 +19,12 @@ public class Position {
         return new Position(left, current);
     }
 
-    public boolean isLeft() {
-        return left;
+    public static Position first(ValueGenerator valueGenerator) {
+        return of(false, valueGenerator.generate());
     }
 
-    public boolean isCurrent() {
-        return current;
+    public Position last() {
+        return of(current, false);
     }
 
     public Position next(ValueGenerator valueGenerator) {
@@ -33,5 +33,13 @@ public class Position {
         }
 
         return of(false, valueGenerator.generate());
+    }
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isCurrent() {
+        return current;
     }
 }
