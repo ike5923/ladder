@@ -44,4 +44,22 @@ class PositionTest {
         assertThat(connectedRightPosition.isLeft()).isFalse();
         assertThat(connectedRightPosition.isCurrent()).isTrue();
     }
+
+    @Test
+    @DisplayName("현재 점과 연결된 다음 점 생성")
+    void createNextPosition() {
+        Position currentPosition = Position.of(false, true);
+        Position nextPosition = currentPosition.next(() -> true);
+        assertThat(nextPosition.isLeft()).isTrue();
+        assertThat(nextPosition.isCurrent()).isFalse();
+    }
+
+    @Test
+    @DisplayName("현재 점과 연결되지 않는 다음 점 생성")
+    void createNotConnectedNextPosition() {
+        Position currentPosition = Position.of(false, false);
+        Position nextPosition = currentPosition.next(() -> true);
+        assertThat(nextPosition.isLeft()).isFalse();
+        assertThat(nextPosition.isCurrent()).isTrue();
+    }
 }

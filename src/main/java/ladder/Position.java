@@ -26,4 +26,12 @@ public class Position {
     public boolean isCurrent() {
         return current;
     }
+
+    public Position next(ValueGenerator valueGenerator) {
+        if (current) {
+            return of(true, false);
+        }
+
+        return of(false, valueGenerator.generate());
+    }
 }
