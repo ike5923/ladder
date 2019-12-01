@@ -23,37 +23,23 @@ class UsersTest {
     }
 
     @Test
-    @DisplayName("이름이 공백일 때")
+    @DisplayName("입력받은 참가자가 공백일 때")
     void IsBlankInputNames() {
         assertThatThrownBy(() -> new Users(""))
                 .isInstanceOf(UserException.class);
     }
 
     @Test
-    @DisplayName("이름이 null일 때")
+    @DisplayName("입력받은 참가자가 null일 때")
     void IsNullInputNames() {
         assertThatThrownBy(() -> new Users(null))
                 .isInstanceOf(UserException.class);
     }
 
     @Test
-    @DisplayName("파싱된 이름이 공백일 때")
-    void isBlankParsedName() {
-        assertThatThrownBy(() -> new Users("ike, , hee"))
-                .isInstanceOf(UserException.class);
-    }
-
-    @Test
-    @DisplayName("파싱된 이름이 중복될 때")
+    @DisplayName("이름이 중복될 때")
     void hasDuplicatedName() {
         assertThatThrownBy(() -> new Users("ike, ike"))
-                .isInstanceOf(UserException.class);
-    }
-
-    @Test
-    @DisplayName("5자 초과하는 이름이 있는지")
-    void hasOverMaxNameLength() {
-        assertThatThrownBy(() -> new Users("ike, ikeike"))
                 .isInstanceOf(UserException.class);
     }
 

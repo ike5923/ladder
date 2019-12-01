@@ -6,14 +6,22 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Users {
 
-    private final List<String> names;
+    private final List<User> users;
 
     public Users(final String names) {
-        this.names = validate(parseNames(names));
+        this.users = initUsers(names);
+    }
+
+    private List<User> initUsers(final String names) {
+        List<String> userNames = validate(parseNames(names));
+        return userNames.stream()
+                .map(name -> new User(name, userNames.indexOf(name)))
+                .collect(Collectors.toList());
     }
 
     private String[] parseNames(final String names) {
@@ -25,16 +33,8 @@ public class Users {
     }
 
     private List<String> validate(final String[] parseNames) {
-        if (hasBlankName(parseNames)) {
-            throw new UserException("참가자 이름에 공백이나 null값이 들어갑니다.");
-        }
-
         if (hasDuplicatedName(parseNames)) {
             throw new UserException("참가자 이름이 중복됩니다.");
-        }
-
-        if (hasOverMaxNameLength(parseNames)) {
-            throw new UserException("이름은 최대 5자 이내 입니다.");
         }
 
         if (isInsufficientNumberOfUsers(parseNames)) {
@@ -42,11 +42,6 @@ public class Users {
         }
 
         return Arrays.asList(parseNames);
-    }
-
-    private boolean hasBlankName(final String[] names) {
-        return Stream.of(names)
-                .anyMatch(StringUtils::isBlank);
     }
 
     private boolean hasDuplicatedName(final String[] names) {
@@ -57,24 +52,19 @@ public class Users {
         return countOfUniqueName != names.length;
     }
 
-    private boolean hasOverMaxNameLength(final String[] names) {
-        return Stream.of(names)
-                .anyMatch(this::isOverMaxNameLength);
-    }
-
-    private boolean isOverMaxNameLength(String name) {
-        return name.length() > 5;
-    }
-
     private boolean isInsufficientNumberOfUsers(final String[] names) {
         return names.length < 2;
     }
 
     public int getCountOfUsers() {
-        return names.size();
+        return users.size();
     }
 
     public List<String> getUserNames() {
-        return Collections.unmodifiableList(names);
+        List<String> userNames = users.stream()
+                .map(User::getName)
+                .collect(Collectors.toList());
+
+        return Collections.unmodifiableList(userNames);
     }
 }
