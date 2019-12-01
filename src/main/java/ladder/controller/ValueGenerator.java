@@ -1,4 +1,4 @@
-package ladder.domain;
+package ladder.controller;
 
 public interface ValueGenerator {
     boolean generate();

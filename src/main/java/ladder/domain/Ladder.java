@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.controller.ValueGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -1,5 +1,7 @@
 package ladder.domain;
 
+import ladder.controller.ValueGenerator;
+
 import java.util.Objects;
 
 /**
