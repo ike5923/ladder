@@ -33,6 +33,10 @@ public class Users {
             throw new UserException("참가자 이름이 중복됩니다.");
         }
 
+        if (hasOverMaxNameLength(parseNames)) {
+            throw new UserException("이름은 최대 5자 이내 입니다.");
+        }
+
         if (isInsufficientNumberOfUsers(parseNames)) {
             throw new UserException("참가자 수는 최소 2명 이상입니다.");
         }
@@ -51,6 +55,15 @@ public class Users {
                 .count();
 
         return countOfUniqueName != names.length;
+    }
+
+    private boolean hasOverMaxNameLength(final String[] names) {
+        return Stream.of(names)
+                .anyMatch(this::isOverMaxNameLength);
+    }
+
+    private boolean isOverMaxNameLength(String name) {
+        return name.length() > 5;
     }
 
     private boolean isInsufficientNumberOfUsers(final String[] names) {

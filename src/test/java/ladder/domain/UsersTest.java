@@ -15,9 +15,9 @@ class UsersTest {
     @Test
     @DisplayName("참가자 이름 파싱")
     void parseNames() {
-        Users users = new Users("ike, heebong, choihz, ddu0422, pkch93");
+        Users users = new Users("ike, hee, choi, ddu, pkch");
         List<String> actual = users.getUserNames();
-        List<String> expected = Arrays.asList("ike", "heebong", "choihz", "ddu0422", "pkch93");
+        List<String> expected = Arrays.asList("ike", "hee", "choi", "ddu", "pkch");
 
         assertThat(actual).isEqualTo(expected);
     }
@@ -39,7 +39,7 @@ class UsersTest {
     @Test
     @DisplayName("파싱된 이름이 공백일 때")
     void isBlankParsedName() {
-        assertThatThrownBy(() -> new Users("ike, , heebong"))
+        assertThatThrownBy(() -> new Users("ike, , hee"))
                 .isInstanceOf(UserException.class);
     }
 
@@ -47,6 +47,13 @@ class UsersTest {
     @DisplayName("파싱된 이름이 중복될 때")
     void hasDuplicatedName() {
         assertThatThrownBy(() -> new Users("ike, ike"))
+                .isInstanceOf(UserException.class);
+    }
+
+    @Test
+    @DisplayName("5자 초과하는 이름이 있는지")
+    void hasOverMaxNameLength() {
+        assertThatThrownBy(() -> new Users("ike, ikeike"))
                 .isInstanceOf(UserException.class);
     }
 
