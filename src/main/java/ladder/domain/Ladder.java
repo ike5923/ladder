@@ -18,7 +18,7 @@ public class Ladder {
     }
 
     private List<Line> initLines(final Height height, final int countOfPerson, final ValueGenerator valueGenerator) {
-        return IntStream.rangeClosed(1, height.getValue())
+        return IntStream.rangeClosed(0, height.getValue() - 1)
                 .mapToObj(i -> new Line(countOfPerson, valueGenerator))
                 .collect(Collectors.toList());
     }

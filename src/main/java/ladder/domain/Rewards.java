@@ -10,6 +10,10 @@ import java.util.stream.IntStream;
 
 public class Rewards {
 
+    private static final String SPACE = " ";
+    private static final String NON_SPACE = "";
+    private static final String NAME_DELIMITER = ",";
+
     private final List<String> rewardNames;
     private Map<String, String> results = new HashMap<>();
 
@@ -22,7 +26,7 @@ public class Rewards {
             throw new UserException("실행 결과를 입력해주세요.");
         }
 
-        return Arrays.asList(inputRewards.replaceAll(" ", "").trim().split(","));
+        return Arrays.asList(inputRewards.replaceAll(SPACE, NON_SPACE).trim().split(NAME_DELIMITER));
     }
 
     private List<String> validate(final List<String> parsedRewards, final int countOfUsers) {

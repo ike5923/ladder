@@ -8,11 +8,13 @@ import java.util.List;
 
 public class Line {
 
+    private static final int COUNR_OF_POSITIONS_EXCEPT_FIRST_AND_SECOND = 2;
+
     private final List<Position> positions = new ArrayList<>();
 
     public Line(int countOfUsers, ValueGenerator valueGenerator) {
         positions.add(Position.first(valueGenerator));
-        while (countOfUsers-- > 2) {
+        while (countOfUsers-- > COUNR_OF_POSITIONS_EXCEPT_FIRST_AND_SECOND) {
             positions.add(getLastPosition().next(valueGenerator));
         }
         positions.add(getLastPosition().last());

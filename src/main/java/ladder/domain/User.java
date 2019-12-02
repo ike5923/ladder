@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class User {
 
+    private static final int MIN_NAME_LENGTH = 5;
     private final String name;
     private int lineNumber;
 
@@ -18,7 +19,7 @@ public class User {
             throw new UserException("참가자 이름에 공백이나 null이 들어갑니다.");
         }
 
-        if (name.length() > 5) {
+        if (name.length() > MIN_NAME_LENGTH) {
             throw new UserException("이름은 최대 5자 이내 입니다.");
         }
 

@@ -10,6 +10,11 @@ import java.util.stream.Collectors;
 
 public class Users {
 
+    private static final String SPACE = " ";
+    private static final String NON_SPACE = "";
+    private static final String NAME_DELIMITER = ",";
+    private static final int MIN_NUMBER_OF_USERS = 2;
+
     private final List<User> users;
 
     public Users(final String names) {
@@ -28,7 +33,7 @@ public class Users {
             throw new UserException("참가자를 입력해주세요.");
         }
 
-        return Arrays.asList(names.replaceAll(" ", "").trim().split(","));
+        return Arrays.asList(names.replaceAll(SPACE, NON_SPACE).trim().split(NAME_DELIMITER));
     }
 
     private List<String> validate(final List<String> parseNames) {
@@ -52,7 +57,7 @@ public class Users {
     }
 
     private boolean isInsufficientNumberOfUsers(final List<String> names) {
-        return names.size() < 2;
+        return names.size() < MIN_NUMBER_OF_USERS;
     }
 
     public int getCountOfUsers() {

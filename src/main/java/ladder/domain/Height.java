@@ -5,6 +5,8 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 public class Height {
 
+    private static final int MIN_HEIGHT = 1;
+
     private final int value;
 
     public Height(final String inputValue) {
@@ -29,7 +31,7 @@ public class Height {
     }
 
     private boolean isLowerMinHeight(final int value) {
-        return value < 1;
+        return value < MIN_HEIGHT;
     }
 
     public int getValue() {
