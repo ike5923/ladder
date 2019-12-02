@@ -13,8 +13,8 @@ public class Rewards {
     private final List<String> rewardNames;
     private Map<String, String> results = new HashMap<>();
 
-    public Rewards(final String inputRewards) {
-        this.rewardNames = parsedRewards(inputRewards);
+    public Rewards(final String inputRewards, int countOfUsers) {
+        this.rewardNames = validate(parsedRewards(inputRewards), countOfUsers);
     }
 
     private List<String> parsedRewards(final String inputRewards) {
@@ -23,6 +23,18 @@ public class Rewards {
         }
 
         return Arrays.asList(inputRewards.replaceAll(" ", "").trim().split(","));
+    }
+
+    private List<String> validate(final List<String> parsedRewards, final int countOfUsers) {
+        if (isDifferentNumberOf(parsedRewards.size(), countOfUsers)) {
+            throw new RewardException("참가자 수와 결과 수가 맞지 않습니다.");
+        }
+
+        return parsedRewards;
+    }
+
+    private boolean isDifferentNumberOf(final int countOfRewards, final int countOfUsers) {
+        return countOfRewards != countOfUsers;
     }
 
     public void init(final List<User> users) {

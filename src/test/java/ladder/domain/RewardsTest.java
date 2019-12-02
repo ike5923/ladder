@@ -17,7 +17,7 @@ class RewardsTest {
 
     @BeforeEach
     void setUp() {
-        rewards = new Rewards("a, b, c");
+        rewards = new Rewards("a, b, c", 3);
         User ike = new User("ike", 2);
         User hee = new User("hee", 0);
         User choi = new User("choi", 1);
@@ -37,6 +37,13 @@ class RewardsTest {
     @DisplayName("조회하려는 결과가 없을 때")
     void emptyResult() {
         assertThatThrownBy(() -> rewards.getResult("ddu"))
+                .isInstanceOf(RewardException.class);
+    }
+
+    @Test
+    @DisplayName("참가자 수와 결과의 수가 다를 때")
+    void differentNumberOfUsersAndRewards() {
+        assertThatThrownBy(() -> new Rewards("a, b, c", 4))
                 .isInstanceOf(RewardException.class);
     }
 }

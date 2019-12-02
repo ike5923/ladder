@@ -18,7 +18,7 @@ public class LadderGame {
     public LadderGame(final String names, final String height, final String rewards, ValueGenerator valueGenerator) {
         this.users = new Users(names);
         this.ladder = new Ladder(new Height(height), users.getCountOfUsers(), valueGenerator);
-        this.rewards = new Rewards(rewards);
+        this.rewards = new Rewards(rewards, users.getCountOfUsers());
     }
 
     public void execute() {
