@@ -1,5 +1,6 @@
 package ladder.domain;
 
+import ladder.domain.exception.RewardException;
 import ladder.domain.exception.UserException;
 import org.apache.commons.lang3.StringUtils;
 
@@ -39,7 +40,12 @@ public class Rewards {
     }
 
     public String getResult(String userName) {
-        return results.get(userName);
+        String result = results.get(userName);
+        if (result == null) {
+            throw new RewardException("해당하는 결과가 없습니다.");
+        }
+
+        return result;
     }
 
     public Map<String, String> getResults() {
