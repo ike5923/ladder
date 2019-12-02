@@ -39,6 +39,18 @@ public class Position {
         return of(false, valueGenerator.generate());
     }
 
+    public int getDirection() {
+        if (left) {
+            return -1;
+        }
+
+        if (current) {
+            return 1;
+        }
+
+        return 0;
+    }
+
     public boolean isLeft() {
         return left;
     }

@@ -23,6 +23,13 @@ public class Ladder {
                 .collect(Collectors.toList());
     }
 
+    public void move(User user) {
+        lines.forEach(line -> {
+            int nextLineNumber = line.nextLineNumber(user.getLineNumber());
+            user.updateLineNumber(nextLineNumber);
+        });
+    }
+
     public List<Line> getLines() {
         return Collections.unmodifiableList(lines);
     }

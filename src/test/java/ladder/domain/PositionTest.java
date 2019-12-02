@@ -62,4 +62,25 @@ class PositionTest {
         assertThat(nextPosition.isLeft()).isFalse();
         assertThat(nextPosition.isCurrent()).isTrue();
     }
+
+    @Test
+    @DisplayName("왼쪽 방향으로 이동")
+    void getLeftDirection() {
+        Position position = Position.of(true, false);
+        assertThat(position.getDirection()).isEqualTo(-1);
+    }
+
+    @Test
+    @DisplayName("오른쪽 방향으로 이동")
+    void getRightDirection() {
+        Position position = Position.of(false, true);
+        assertThat(position.getDirection()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("이동할 수 없을 때")
+    void getStopDirection() {
+        Position position = Position.of(false, false);
+        assertThat(position.getDirection()).isEqualTo(0);
+    }
 }

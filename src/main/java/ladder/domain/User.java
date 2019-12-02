@@ -25,7 +25,15 @@ public class User {
         return name;
     }
 
+    public void updateLineNumber(int direction) {
+        lineNumber += direction;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public int getLineNumber() {
+        return lineNumber;
     }
 }

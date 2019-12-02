@@ -18,6 +18,11 @@ public class Line {
         positions.add(getLastPosition().last());
     }
 
+    public int nextLineNumber(int currentLineNumber) {
+        Position position = positions.get(currentLineNumber);
+        return currentLineNumber + position.getDirection();
+    }
+
     private Position getLastPosition() {
         return positions.get(positions.size() - 1);
     }

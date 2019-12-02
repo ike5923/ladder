@@ -10,11 +10,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LineTest {
 
+    private Line line;
     private List<Position> positions;
 
     @BeforeEach
     void setUp() {
-        Line line = new Line(4, () -> true);
+        line = new Line(4, () -> true);
         positions = line.getPositions();
     }
 
@@ -42,5 +43,24 @@ class LineTest {
     void countOfPositions() {
         int countOfPositions = positions.size();
         assertThat(countOfPositions).isEqualTo(4);
+    }
+
+    @Test
+    @DisplayName("왼쪽으로 이동")
+    void nextLineLeft() {
+        assertThat(line.nextLineNumber(1)).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("오른으로 이동")
+    void nextLineRight() {
+        assertThat(line.nextLineNumber(0)).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("정지")
+    void nextLineStop() {
+        Line emptyLine = new Line(3, () -> false);
+        assertThat(emptyLine.nextLineNumber(1)).isEqualTo(1);
     }
 }

@@ -60,6 +60,10 @@ public class Users {
         return users.size();
     }
 
+    public List<User> getUsers() {
+        return Collections.unmodifiableList(users);
+    }
+
     public List<String> getUserNames() {
         List<String> userNames = users.stream()
                 .map(User::getName)
