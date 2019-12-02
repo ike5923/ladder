@@ -11,7 +11,14 @@ class HeightTest {
     @Test
     @DisplayName("입력한 높이가 최소 높이보다 작을 때")
     void isLowerMinHeight() {
-        assertThatThrownBy(() -> new Height(0))
+        assertThatThrownBy(() -> new Height("0"))
+                .isInstanceOf(HeightException.class);
+    }
+
+    @Test
+    @DisplayName("입력한 높이가 숫자가 아닐 때")
+    void isNumber() {
+        assertThatThrownBy(() -> new Height("a"))
                 .isInstanceOf(HeightException.class);
     }
 }

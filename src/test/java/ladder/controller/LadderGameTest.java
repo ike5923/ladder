@@ -10,7 +10,7 @@ class LadderGameTest {
 
     @Test
     void execute() {
-        LadderGame ladderGame = new LadderGame("ike, hee, choi, ddu", 3, "x, o, x, o", () -> true);
+        LadderGame ladderGame = new LadderGame("ike, hee, choi, ddu", "3", "x, o, x, o", () -> true);
         ladderGame.execute();
 
         Map<String, String> results = ladderGame.getResults();

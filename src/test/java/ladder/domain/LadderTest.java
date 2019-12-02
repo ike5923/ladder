@@ -14,7 +14,7 @@ class LadderTest {
 
     @BeforeEach
     void setUp() {
-        ladder = new Ladder(new Height(2), 3, () -> true);
+        ladder = new Ladder(new Height("2"), 3, () -> true);
     }
 
     @Test
