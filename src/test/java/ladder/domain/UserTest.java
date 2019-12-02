@@ -34,7 +34,7 @@ class UserTest {
     @DisplayName("현재 라인 번호 변경")
     void updateLineNumber() {
         User user = new User("ike", 1);
-        user.updateLineNumber(1);
+        user.updateLineNumber(2);
         assertThat(user.getLineNumber()).isEqualTo(2);
     }
 }
