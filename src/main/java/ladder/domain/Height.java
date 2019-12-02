@@ -6,8 +6,8 @@ public class Height {
 
     private final int value;
 
-    public Height(final int value) {
-        this.value = validate(value);
+    public Height(final String value) {
+        this.value = validate(Integer.parseInt(value));
     }
 
     private int validate(final int value) {

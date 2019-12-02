@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Users {
 
@@ -24,15 +23,15 @@ public class Users {
                 .collect(Collectors.toList());
     }
 
-    private String[] parseNames(final String names) {
+    private List<String> parseNames(final String names) {
         if (StringUtils.isBlank(names)) {
             throw new UserException("참가자를 입력해주세요.");
         }
 
-        return names.replaceAll(" ", "").trim().split(",");
+        return Arrays.asList(names.replaceAll(" ", "").trim().split(","));
     }
 
-    private List<String> validate(final String[] parseNames) {
+    private List<String> validate(final List<String> parseNames) {
         if (hasDuplicatedName(parseNames)) {
             throw new UserException("참가자 이름이 중복됩니다.");
         }
@@ -41,19 +40,19 @@ public class Users {
             throw new UserException("참가자 수는 최소 2명 이상입니다.");
         }
 
-        return Arrays.asList(parseNames);
+        return parseNames;
     }
 
-    private boolean hasDuplicatedName(final String[] names) {
-        long countOfUniqueName = Stream.of(names)
+    private boolean hasDuplicatedName(final List<String> names) {
+        long countOfUniqueName = names.stream()
                 .distinct()
                 .count();
 
-        return countOfUniqueName != names.length;
+        return countOfUniqueName != names.size();
     }
 
-    private boolean isInsufficientNumberOfUsers(final String[] names) {
-        return names.length < 2;
+    private boolean isInsufficientNumberOfUsers(final List<String> names) {
+        return names.size() < 2;
     }
 
     public int getCountOfUsers() {

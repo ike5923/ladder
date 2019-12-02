@@ -6,6 +6,7 @@ import ladder.domain.Line;
 import ladder.domain.Position;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 public class OutputView {
@@ -66,11 +67,16 @@ public class OutputView {
     }
 
     public static void printAllResult(LadderGame ladderGame) {
-        List<Integer> lineNumbers = ladderGame.getUsersLineNumber();
-        lineNumbers.forEach(number -> {
-            String result = String.format("%10s", number);
-            stringBuilder.append(result);
-        });
+        Map<String, String> results = ladderGame.getResults();
+        stringBuilder.append("실행결과");
+        stringBuilder.append(NEXT_LINE);
+        results.forEach((key, value) -> stringBuilder.append(String.format("%s : %s%s", key, value, NEXT_LINE)));
+        printOutput();
+    }
+
+    public static void printResult(final LadderGame ladderGame, final String question) {
+        String result = ladderGame.getResult(question);
+        stringBuilder.append(String.format("%s : %s", question, result));
         printOutput();
     }
 }
