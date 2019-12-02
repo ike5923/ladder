@@ -4,6 +4,7 @@ import ladder.domain.exception.UserException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class UserTest {
@@ -27,5 +28,13 @@ class UserTest {
     void hasOverMaxNameLength() {
         assertThatThrownBy(() -> new User("ikeike", 1))
                 .isInstanceOf(UserException.class);
+    }
+
+    @Test
+    @DisplayName("현재 라인 번호 변경")
+    void updateLineNumber() {
+        User user = new User("ike", 1);
+        user.updateLineNumber(1);
+        assertThat(user.getLineNumber()).isEqualTo(2);
     }
 }

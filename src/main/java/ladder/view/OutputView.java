@@ -20,7 +20,7 @@ public class OutputView {
     public static void printLadder(LadderGame ladderGame) {
         printUserNames(ladderGame.getUserNames());
         printLadderBody(ladderGame.getLadder());
-        System.out.println(stringBuilder.toString());
+        printOutput();
     }
 
     private static void printUserNames(final List<String> userNames) {
@@ -58,5 +58,19 @@ public class OutputView {
     private static void drawLine(String icon) {
         IntStream.rangeClosed(1, 9).forEach(i -> stringBuilder.append(icon));
         stringBuilder.append(COL_LINE);
+    }
+
+    private static void printOutput() {
+        System.out.println(stringBuilder.toString());
+        stringBuilder.setLength(0);
+    }
+
+    public static void printAllResult(LadderGame ladderGame) {
+        List<Integer> lineNumbers = ladderGame.getUsersLineNumber();
+        lineNumbers.forEach(number -> {
+            String result = String.format("%10s", number);
+            stringBuilder.append(result);
+        });
+        printOutput();
     }
 }

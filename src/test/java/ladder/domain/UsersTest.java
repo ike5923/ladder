@@ -49,4 +49,17 @@ class UsersTest {
         assertThatThrownBy(() -> new Users("ike"))
                 .isInstanceOf(UserException.class);
     }
+
+    @Test
+    @DisplayName("참가자 초기화 잘 되는지")
+    void initUsers() {
+        List<User> users = new Users("ike, hee, choi").getUsers();
+        User ike = users.get(0);
+        User hee = users.get(1);
+        User choi = users.get(2);
+
+        assertThat(ike.getLineNumber()).isEqualTo(0);
+        assertThat(hee.getLineNumber()).isEqualTo(1);
+        assertThat(choi.getLineNumber()).isEqualTo(2);
+    }
 }
